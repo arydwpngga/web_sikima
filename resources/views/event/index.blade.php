@@ -13,7 +13,47 @@
             </div>
             <div class="card-body">
                 <table id="datatablesSimple">
-                    <thead></thead>
+                    <thead>
+                        <tr>
+                            <th>Nama Kegiatan</th>
+                            <th>Deskripsi</th>
+                            <th>Tanggal</th>
+                            <th>Waktu</th>
+                            <th>Lokasi</th>
+                            <th width="280px">Action</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Nama Kegiatan</th>
+                            <th>Deskripsi</th>
+                            <th>Tanggal</th>
+                            <th>Waktu</th>
+                            <th>Lokasi</th>
+                            <th>Action</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach ($event as $e)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $e->nama_kegiatan }}</td>
+                                <td>{{ $e->deskripsi }}</td>
+                                <td>{{ $e->tanggal }}</td>
+                                <td>{{ $e->waktu }}</td>
+                                <td>{{ $e->lokasi }}</td>
+                                <td>
+                                    <a href="" class="btn btn-sm btn-secondary">Daftar</a>
+                                    <a href="{{ route('index.edit', $e->id_kegiatan) }}"
+                                        class="btn btn-sm btn-warning">edit</a>
+                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal{{ $e->id_kegiatan }}">
+                                        hapus
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>
